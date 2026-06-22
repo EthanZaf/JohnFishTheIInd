@@ -250,7 +250,7 @@ public class LevelGenerator : MonoBehaviour
                                 rotationTry
                                 ))
                         {
-                            Debug.Break();
+                            //Debug.Break();
                             roomSpawned = true;
                             Debug.Log("SPAWN");
                             GameObject newRoom = startingRoom.SpawnRoom(
