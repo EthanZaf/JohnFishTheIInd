@@ -1,8 +1,10 @@
 using UnityEngine;
 
+[System.Serializable]
 public struct BulletStats
 {
-    float damage;
-    int projectiles;
-    int pierceCount;
+    public GameObject bulletPrefab;
+    public float damage;
+    public int projectiles;
+    public int pierceCount;
 }

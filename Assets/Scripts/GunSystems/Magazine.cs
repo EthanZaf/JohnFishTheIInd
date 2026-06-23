@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class Magazine : MonoBehaviour
 {
-    [SerializeField] Stack<BulletStats> bulletStack;
+    
+    [SerializeField] List<BulletStats> bulletStack;
+    [SerializeField] Transform removePoint;
+
+    [Space(10)]
+    [Header("Debug Variables")]
+    [SerializeField] BulletStats defaultTestBullet;
+
 
     public void LoadBullet(BulletStats bullet)
     {
         bulletStack.Push(bullet);
     }
 
-    public BulletStats? UnloadBullet()
+    public BulletStats? UseBullet()
     {
         if (bulletStack.Count > 0)
         {
@@ -22,4 +29,24 @@ public class Magazine : MonoBehaviour
             return null;
         }
     }
+
+    public void RemoveBullet()
+    {
+        if (bulletStack.Count > 0)
+        {
+            Instantiate(bulletStack.Pop().bulletPrefab, removePoint.position, removePoint.rotation);
+        }
+    }
+
+    public void AddBullet(BulletStats bullet)
+    {
+        bulletStack.Push(bullet);
+    }
+
+    public void AddTestBullet()
+    {
+        AddBullet(defaultTestBullet);
+    }
+
+
 }
