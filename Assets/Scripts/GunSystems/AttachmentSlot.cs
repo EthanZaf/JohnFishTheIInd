@@ -1,6 +1,6 @@
 using UnityEngine;
 [System.Serializable]
-public struct AttachmentSlot
+public class AttachmentSlot
 {
 
     public GunAttachment gunAttachment;

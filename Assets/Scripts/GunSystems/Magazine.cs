@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magazine : MonoBehaviour
+public class Magazine : GunAttachment
 {
     
     [SerializeField] List<BulletStats> bulletStack;
@@ -47,6 +47,7 @@ public class Magazine : MonoBehaviour
     {
         AddBullet(defaultTestBullet);
     }
+
 
 
 }

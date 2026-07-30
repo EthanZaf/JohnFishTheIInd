@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public struct BulletStats
+public class BulletStats
 {
     public GameObject bulletPrefab;
     public float damage;
