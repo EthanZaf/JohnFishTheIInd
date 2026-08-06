@@ -50,4 +50,6 @@ public class Magazine : GunAttachment
 
 
 
+
+
 }

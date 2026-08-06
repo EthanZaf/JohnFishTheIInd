@@ -20,11 +20,15 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
     [SerializeField] Transform firePoint;
     [SerializeField] BulletStats bulletInChamber;
     [SerializeField] Magazine magazine;
+    [SerializeField] GameObject propMagazine;
     [SerializeField] AttachmentManager attachmentManager;
     Animator animator;
 
     [SerializeField] float triggerValue;
     [SerializeField] float triggerThreshold = 0.5f;
+
+
+    bool isSlideBack = false;
 
 
 
@@ -49,6 +53,16 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
     void UpdateMagazine()
     {
         magazine = attachmentManager.GetAttachment<Magazine>();
+        
+        if(magazine != null)
+        {
+            propMagazine.SetActive(true);
+            magazine.GetComponent<MeshRenderer>().enabled = false;
+        } else
+        {
+            propMagazine.SetActive(false);
+        }
+
     }
 
     public bool AttemptToChamberRound()
@@ -60,7 +74,7 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
 
         }
 
-        BulletStats? bullet = magazine.UseBullet();
+        BulletStats bullet = magazine.UseBullet();
 
         if(bullet != null)
         {
@@ -75,7 +89,17 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
     public void EjectRound()
     {
         
-        Instantiate(bulletInChamber.bulletPrefab, casingSpawnPoint.position, casingSpawnPoint.rotation);
+        GameObject bulletCase = Instantiate(bulletInChamber.bulletPrefab, casingSpawnPoint.position, casingSpawnPoint.rotation);
+
+        Vector3 ejectDir = 
+            casingSpawnPoint.right * Random.Range(1.5f, 5f) +
+            casingSpawnPoint.up * Random.Range(-1.5f, -4.5f) +
+            casingSpawnPoint.forward * Random.Range(-1.5f, -4.5f);
+
+        Rigidbody rb = bulletCase.GetComponent<Rigidbody>();
+        rb.AddForce(ejectDir * 0.4f, ForceMode.Impulse);
+        rb.AddTorque(Random.insideUnitSphere * Random.Range(0.2f, 0.6f), ForceMode.Impulse);
+
 
 
     }
@@ -101,6 +125,7 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
 
                 //stay in slide/bolt back position, no round to chamber
                 animator.SetTrigger("FireLastShot");
+                isSlideBack = true;
 
             }
 
@@ -113,8 +138,10 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
 
     public void Rack()
     {
+        
+
         //Eject the round in the chamber if there is one
-        if(bulletInChamber?.bulletPrefab != null)
+        if (bulletInChamber?.bulletPrefab != null)
         {
             EjectRound();
         }
@@ -126,21 +153,65 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
 
     }
 
-    public void SlideRelease()
-    {
-        animator.SetTrigger("SlideRelease");
-        Rack();
-    }
+    
 
     public void ManualSlideRelease()
     {
-        animator.SetTrigger("ManualSlideRelease");
-        Rack();
+        if(isSlideBack) 
+        {
+            animator.SetTrigger("ManualSlideRelease");
+            AttemptToChamberRound();
+            isSlideBack = false;
+        }
     }
 
+    
+
+    public void UnloadMagazine()
+    {
+        //Check if there is a magazine attached
+        if(magazine == null) return;
+
+        //Do Animation
+        animator.SetTrigger("MagRelease");
+
+
+    }
+
+    public void DetachMagazine()
+    {
+        if(magazine == null) return;
+
+        //Set Magazine location to be the same as the prop mag
+        magazine.transform.position = propMagazine.transform.position;
+        //Turn on magazine renderer
+        magazine.GetComponent<MeshRenderer>().enabled = true;
+        //Temp Disable Magazine Tip Collider
+        magazine.GetComponentInChildren<MagazineTip>().DisableTrigger();
+        //Remove from attachment manager & unparent
+        attachmentManager.RemoveAttachment(AttachmentTypes.Magazine);
+        //Disable the prop magazine happens on updating the attachments
+
+    }
+
+
+
+    /////////////////// INTERFACES //////////////////////////
     public void MagRelease()
     {
-        
+        Debug.Log("MagRelease");
+        UnloadMagazine();
+    }
+
+    public void SlideRelease()
+    {
+        if (isSlideBack)
+        {
+            animator.SetTrigger("SlideRelease");
+            AttemptToChamberRound();
+            isSlideBack = false;
+        }
+        else Rack();
     }
 
     public void UpdateTriggerValue(float value)

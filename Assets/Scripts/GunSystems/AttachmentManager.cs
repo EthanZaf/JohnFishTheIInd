@@ -19,7 +19,7 @@ public class AttachmentManager : MonoBehaviour
     {
         foreach (var slot in attachmentSlots)
         {
-            if (slot.possibleAttachmentTypes is T attachment)
+            if (slot.gunAttachment is T attachment)
                 return attachment;
         }
 
@@ -39,6 +39,9 @@ public class AttachmentManager : MonoBehaviour
                 gunAttachment.transform.localPosition = Vector3.zero;
                 gunAttachment.transform.localRotation = Quaternion.identity;
 
+                gunAttachment.GetComponent<Rigidbody>().isKinematic = true;
+                gunAttachment.GetComponent<Collider>().enabled = false;
+
                 OnAttachmentChanged?.Invoke(gunAttachment);
 
                 return;
@@ -57,6 +60,8 @@ public class AttachmentManager : MonoBehaviour
                 if (removedAttachment != null)
                 {
                     removedAttachment.transform.SetParent(null);
+                    removedAttachment.GetComponent<Rigidbody>().isKinematic = false;
+                    removedAttachment.GetComponent<Collider>().enabled = true;
                 }
 
                 attachmentSlots[i].gunAttachment = null;
