@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_BlackOutlines
+  m_Name: shotgun
   m_Shader: {fileID: -6465566751694194690, guid: 5bc2459e979e38349abb7c1efcc3cd3f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Float: 0.003
+    - _Float: 0.002
     - _Float_1: 0
     - _QueueControl: 0
     - _QueueOffset: 0
