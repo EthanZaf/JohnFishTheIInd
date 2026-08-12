@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Outline 1
-  m_Shader: {fileID: -6465566751694194690, guid: 5306b22d0374bd54a82bf0fdec309d36, type: 3}
+  m_Name: FullOutline
+  m_Shader: {fileID: -6465566751694194690, guid: fed34b1160fef4448b3c711e91c72203, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -39,10 +39,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _Boolean: 0
-    - _Colour_Threshold: 1.82
-    - _Normal_Threshold: 0.29
+    - _Colour_Threshold: 2.61
+    - _Normal_Threshold: 1.31
     - _OVERLAY: 1
+    - _noise: 1
+    - _oiwer: 0
     m_Colors:
-    - _OutlineColour: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+    - _OutlineColour: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
