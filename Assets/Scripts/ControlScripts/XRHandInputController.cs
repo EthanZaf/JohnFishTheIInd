@@ -8,9 +8,35 @@ public class XRHandInputController : MonoBehaviour
     [SerializeField] InputActionReference secondaryButton;
     [SerializeField] InputActionReference trigger;
 
-    [SerializeField] GameObject heldObject;
+    [SerializeField] GameObject _heldObject;
+
+    MeshRenderer[] controllerMeshes;
+
+    public GameObject heldObject
+    {
+        get { return _heldObject; }
+        set
+        {
+            _heldObject = value;
+            if (_heldObject != null)
+            {
+                ToggleControllerMeshes(false);
+            }
+            else
+            {
+                ToggleControllerMeshes(true);
+            }
+        }
+    }
+
+
     IReloadable reloadable;
     IFireable fireable;
+
+    private void Start()
+    {
+        controllerMeshes = GetComponentsInChildren<MeshRenderer>(true);
+    }
     private void OnEnable()
     {
         primaryButton.action.performed += OnPrimaryPressed;
@@ -81,5 +107,13 @@ public class XRHandInputController : MonoBehaviour
         heldObject = null;
         reloadable = null;
         fireable = null;
+    }
+
+    void ToggleControllerMeshes(bool isVisible)
+    {
+        foreach (MeshRenderer mesh in controllerMeshes)
+        {
+            mesh.enabled = isVisible;
+        }
     }
 }

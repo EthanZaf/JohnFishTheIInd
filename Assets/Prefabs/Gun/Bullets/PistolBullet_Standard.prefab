@@ -50,6 +50,7 @@ MonoBehaviour:
   bulletStats:
     bulletPrefab: {fileID: 2347674866778014463}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   isSpent: 0

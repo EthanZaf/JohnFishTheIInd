@@ -109,6 +109,7 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
         if(bulletInChamber?.bulletPrefab != null)
         {
             //Do a hitscan, vfx, sfx, apply damage, fire cooldown.
+            BulletCast(bulletInChamber.damage, bulletInChamber.force);
 
             //Then eject the round
             EjectRound();
@@ -153,7 +154,24 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
 
     }
 
-    
+    public void BulletCast(float bulletDamage, float bulletForce)
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+        {
+
+            Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.AddForceAtPosition(firePoint.forward * bulletForce, hit.point, ForceMode.Impulse);
+            }
+
+        }
+
+        Debug.DrawRay(firePoint.position, firePoint.forward * 100f, Color.red, 1f);
+    }
 
     public void ManualSlideRelease()
     {

@@ -252,6 +252,7 @@ Transform:
   - {fileID: 1379129744902934988}
   - {fileID: 3533321734528511069}
   - {fileID: 3751401342994231596}
+  - {fileID: 1237874317101016935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6278275045324655470
@@ -285,10 +286,11 @@ MonoBehaviour:
   isAutomatic: 0
   hasBeenPulled: 0
   casingSpawnPoint: {fileID: 1379129744902934988}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1237874317101016935}
   bulletInChamber:
     bulletPrefab: {fileID: 0}
     damage: 0
+    force: 0
     projectiles: 0
     pierceCount: 0
   magazine: {fileID: 0}
@@ -1047,6 +1049,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000020861623}
   m_LocalPosition: {x: -5.348042e-10, y: -0.000000007450581, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4952727429218122}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!1 &8032718119153556765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237874317101016935}
+  m_Layer: 0
+  m_Name: FiringPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237874317101016935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032718119153556765}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000032037492}
+  m_LocalPosition: {x: 0, y: 0.02632296, z: -0.15238844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

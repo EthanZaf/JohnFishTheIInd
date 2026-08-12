@@ -186,36 +186,44 @@ MonoBehaviour:
   bulletStack:
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   - bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 1
     projectiles: 0
     pierceCount: 0
   removePoint: {fileID: 4397870336037957961}
   defaultTestBullet:
     bulletPrefab: {fileID: 2347674866778014463, guid: 151e1656c830d684bb2a74d80e04883e, type: 3}
     damage: 0
+    force: 0
     projectiles: 0
     pierceCount: 0
 --- !u!54 &7264954932414245109
