@@ -28,7 +28,7 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
     [SerializeField] float triggerThreshold = 0.5f;
 
 
-    bool isSlideBack = false;
+    public bool isSlideBack = false;
 
 
 
@@ -229,7 +229,6 @@ public class GunManager : MonoBehaviour, IFireable, IReloadable
             AttemptToChamberRound();
             isSlideBack = false;
         }
-        else Rack();
     }
 
     public void UpdateTriggerValue(float value)
